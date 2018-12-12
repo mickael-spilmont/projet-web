@@ -17,3 +17,10 @@ out/
 META-INF/
 .DS_Store
 *.xml
+*.db
+Acces.class
+Acces.java
+JdbcSqlite.class
+JdbcSqlite.java
+Test.class
+Test.java
