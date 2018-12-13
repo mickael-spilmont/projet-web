@@ -81,7 +81,11 @@ insert into exemplaire (id_util, id_livre, id_status) values
 SELECT prenom, nom, date_naissance, mail FROM utilisateur;
 SELECT titre, auteur, editeur, isbn FROM livre;
 
-SELECT exemplaire.date_exemplaire, livre.titre, livre.auteur, livre.editeur, utilisateur.prenom, utilisateur.nom, status.type FROM exemplaire
-INNER JOIN utilisateur ON utilisateur.id = exemplaire.id_util
-INNER JOIN livre ON livre.id = exemplaire.id_livre
-INNER JOIN status ON status.id = exemplaire.id_exemplaire;
+-- SELECT exemplaire.date_exemplaire, livre.titre, livre.auteur, livre.editeur, utilisateur.prenom, utilisateur.nom, status.type FROM exemplaire
+-- INNER JOIN utilisateur ON utilisateur.id = exemplaire.id_util
+-- INNER JOIN livre ON livre.id = exemplaire.id_livre
+-- INNER JOIN status ON status.id = exemplaire.id_exemplaire;
+
+-- Login
+SELECT prenom, nom FROM utilisateur
+WHERE mail = 'mickael.spilmont@webmail.com' AND password = '0000';
