@@ -8,26 +8,12 @@ import java.time.*;
 
 @WebServlet("/accueil")
 public class Accueil extends HttpServlet {
+
+
   public void service(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
     resp.setContentType("text/html");
     resp.setCharacterEncoding("UTF-8");
     PrintWriter out = resp.getWriter();
-
-    out.print("<!DOCTYPE html>");
-    out.print("<html>");
-    out.println("<head>");
-    out.println("<meta charset=\"utf-8\" />");
-    out.println("<title>Accueil</title>");
-    out.println("</head>");
-    out.println("<body>");
-    out.println("<h1>Bienvenue</h1>");
-    out.println("<ul>");
-    out.println(" <li><a href=\"http://localhost:8080/projet/accueil.html\">Accueil </a></li>");
-    out.println(" <li><a href=\"todo\">Mes Livres </a></li>");
-    out.println(" <li><a href=\"todo\">Ajouter des livres </a></li>");
-    out.println(" <li><a href=\"todo\">Rechercher </a></li>");
-    out.println(" <li><a href=\"http://localhost:8080/projet/login.html\">Login </a></li>");
-    out.println("</ul>");
 
     try {
       // On déclare le type de driver JDBC et le chemin d’accès à la base, si pb exception ClassNotFound
@@ -44,20 +30,14 @@ public class Accueil extends HttpServlet {
         Statement stat = conn.createStatement();
 
         // le resultat du select est mis dans un ResultSet
-        String requette = "SELECT nom, date_naissance FROM utilisateur;";
+        String requette = "SELECT nom FROM utilisateur;";
         ResultSet rs = stat.executeQuery(requette);
 
-        while (rs.next()) {
-          // int idJava = rs.getInt("id");
-          // String prenomJava = rs.getString("prenom");
-          String nomJava = rs.getString("nom");
-          String dateJava = rs.getString("date_naissance");
-          // String mailJava = rs.getString("mail");
-          // int rangJava = rs.getInt("rang");
-          // String passwordJava = rs.getString("password");
-
-          out.print(nomJava + " " + dateJava + "</br>");
+        ArrayList<String> nom = new ArrayList<>();
+        while(rs.next()) {
+          nom.add(rs.getString("nom"));
         }
+        req.setAttribute("nom", nom);
 
         // On ferme les connexions au ResultSet, Statement et à la base
         rs.close();
@@ -74,10 +54,6 @@ public class Accueil extends HttpServlet {
       out.print("SQLException");
     }
 
-    HttpSession session = req.getSession();
-    String idUser = (String)session.getAttribute("idUser");
-    out.print("L'ID est : " + idUser);
-    out.print("</body>");
-    out.print("</html>");
+    this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(req, resp);
   }
 }
