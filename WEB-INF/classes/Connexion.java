@@ -30,12 +30,20 @@ public class Connexion extends HttpServlet {
 
         ResultSet rs = stat.executeQuery(requette);
 
-        while (rs.next()) {
-          int idJava =  rs.getInt("id");
-          int rangJava = rs.getInt("rang");
-
-          out.print(idJava + "</br>" + rangJava + "</br>");
+        while (!rs.next()) {
+          out.print("Adresse mail ou mot de passe invalide !");
         }
+        // if (!rs.next()) {
+        //   out.print("Adresse mail ou mot de passe invalide !");
+        // }
+        // else {
+        //   int idJava =  rs.getInt("id");
+        //   int rangJava = rs.getInt("rang");
+        //
+        //   out.print(rs.wasNull() + "</br>");
+        //   out.print(idJava + "</br>" + rangJava + "</br>");
+        // }
+
         rs.close();
         stat.close();
         conn.close();
@@ -43,11 +51,11 @@ public class Connexion extends HttpServlet {
     }
     catch (ClassNotFoundException ex) {
       ex.printStackTrace();
-      out.println("ClassNotFoundException");
+      out.print("ClassNotFoundException");
     }
     catch (SQLException ex) {
       ex.printStackTrace();
-      out.println("SQLException");
+      out.print("SQLException");
     }
   }
 }

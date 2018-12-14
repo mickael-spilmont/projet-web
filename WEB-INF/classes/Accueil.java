@@ -22,7 +22,7 @@ public class Accueil extends HttpServlet {
     out.println("<body>");
     out.println("<h1>Bienvenue</h1>");
     out.println("<ul>");
-    out.println(" <li><a href=\"toDo\">Accueil </a></li>");
+    out.println(" <li><a href=\"http://localhost:8080/projet/accueil.html\">Accueil </a></li>");
     out.println(" <li><a href=\"todo\">Mes Livres </a></li>");
     out.println(" <li><a href=\"todo\">Ajouter des livres </a></li>");
     out.println(" <li><a href=\"todo\">Rechercher </a></li>");
@@ -56,7 +56,7 @@ public class Accueil extends HttpServlet {
           // int rangJava = rs.getInt("rang");
           // String passwordJava = rs.getString("password");
 
-          out.println(nomJava + " " + dateJava + "</br>");
+          out.print(nomJava + " " + dateJava + "</br>");
         }
 
         // On ferme les connexions au ResultSet, Statement et à la base
@@ -67,14 +67,17 @@ public class Accueil extends HttpServlet {
     }
     catch (ClassNotFoundException ex) {
       ex.printStackTrace();
-      out.println("ClassNotFoundException");
+      out.print("ClassNotFoundException");
     }
     catch (SQLException ex) {
       ex.printStackTrace();
-      out.println("SQLException");
+      out.print("SQLException");
     }
 
-    out.println("</body>");
-    out.println("</html>");
+    HttpSession session = req.getSession();
+    String idUser = (String)session.getAttribute("idUser");
+    out.print("L'ID est : " + idUser);
+    out.print("</body>");
+    out.print("</html>");
   }
 }
