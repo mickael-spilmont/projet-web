@@ -11,13 +11,18 @@
   <h1>Site en construction</h1>
   <c:import url="/menu-invite.jsp"></c:import>
 
-  <c:if test="${ !empty sessionScope.utilisateur }">
-    Vous ête utilisateur ${ sessionScope.utilisateur.pseudo } </br>
-  </c:if>
+  <form method="post" action="connexion">
+    <p>
+      <label for="pseudo">Pseudo : </label>
+      <input type="text" name="pseudo" id="pseudo" />
+    </p>
+    <p>
+      <label for="password">Password : </label>
+      <input type="text" name="password" id="password" />
+    </p>
 
-  <c:forEach items="${exemplaire}" var="temp">
-        ${temp.date}, ${temp.titre}, ${temp.auteur}, ${temp.editeur}, ${temp.pseudo}, ${temp.type} <br />
-  </c:forEach>
+      <input type="submit" />
+  </form>
 
 </body>
 </html>

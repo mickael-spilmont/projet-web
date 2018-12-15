@@ -4,7 +4,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.sql.*;
-import java.time.*;
 
 @WebServlet("/connexion")
 public class Connexion extends HttpServlet {
@@ -13,10 +12,12 @@ public class Connexion extends HttpServlet {
     resp.setCharacterEncoding("UTF-8");
     PrintWriter out = resp.getWriter();
 
-    String mail = req.getParameter("mail");
-    String password = req.getParameter("password");
-
+    // On appelle la session
     HttpSession session = req.getSession();
+
+    // On récupère les données du formulaire
+    String pseudo = req.getParameter("pseudo");
+    String password = req.getParameter("password");
 
     try {
       Class.forName("org.sqlite.JDBC");
@@ -24,25 +25,28 @@ public class Connexion extends HttpServlet {
       Connection conn = DriverManager.getConnection(dbURL);
 
       if (conn != null) {
+        out.println("Connected to the database");
         Statement stat = conn.createStatement();
-        String requette = "SELECT id, rang FROM utilisateur "
-          + "WHERE mail = '" + mail + "' AND password = '" + password + "';";
+        String requette = "SELECT * FROM utilisateur "
+          + "WHERE pseudo = '" + pseudo + "' AND password = '" + password + "';";
 
         ResultSet rs = stat.executeQuery(requette);
 
-        while (!rs.next()) {
-          out.print("Adresse mail ou mot de passe invalide !");
+        if (!rs.next()) {
+          req.setAttribute("tentative", true);
         }
-        // if (!rs.next()) {
-        //   out.print("Adresse mail ou mot de passe invalide !");
-        // }
-        // else {
-        //   int idJava =  rs.getInt("id");
-        //   int rangJava = rs.getInt("rang");
-        //
-        //   out.print(rs.wasNull() + "</br>");
-        //   out.print(idJava + "</br>" + rangJava + "</br>");
-        // }
+        else {
+          Utilisateur utilisateur = new Utilisateur();
+          utilisateur.setId(rs.getInt("id"));
+          utilisateur.setPseudo(rs.getString("pseudo"));
+          utilisateur.setPrenom(rs.getString("prenom"));
+          utilisateur.setNom(rs.getString("nom"));
+          utilisateur.setDateNaissance(rs.getString("date_naissance"));
+          utilisateur.setMail(rs.getString("mail"));
+          utilisateur.setRang(rs.getInt("rang"));
+
+          session.setAttribute("utilisateur", utilisateur);
+        }
 
         rs.close();
         stat.close();
@@ -57,5 +61,7 @@ public class Connexion extends HttpServlet {
       ex.printStackTrace();
       out.print("SQLException");
     }
+
+    this.getServletContext().getRequestDispatcher("/accueil").forward(req, resp);
   }
 }

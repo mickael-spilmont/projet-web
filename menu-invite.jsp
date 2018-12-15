@@ -7,5 +7,5 @@
     <li><a href="toDo">Mes livres </a></li>
     <li><a href="toDo">Ajouter des livres </a></li>
     <li><a href="toDo">Rechercher </a></li>
-    <li><a href="toDo">Connexion </a></li>
+    <li><a href="connexion.jsp">Connexion </a></li>
 </ul>

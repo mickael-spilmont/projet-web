@@ -1,5 +1,6 @@
 public class Utilisateur {
   private int id;
+  private String pseudo;
   private String prenom;
   private String nom;
   private String dateNaissance;
@@ -13,6 +14,14 @@ public class Utilisateur {
 
   public void setId(int id) {
     this.id = id;
+  }
+
+  public String getPseudo() {
+    return pseudo;
+  }
+
+  public void setPseudo(String pseudo) {
+    this.pseudo = pseudo;
   }
 
   public String getPrenom() {

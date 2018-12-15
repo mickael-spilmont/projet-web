@@ -6,8 +6,9 @@ drop table if exists demande;
 
 create table utilisateur(
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	prenom vchar(20),
-	nom vchar(20),
+	pseudo vchar(15),
+	prenom vchar(50),
+	nom vchar(50),
 	date_naissance DATETIME,
 	mail vchar(50),
 	rang INTEGER,
@@ -17,8 +18,8 @@ create table utilisateur(
 create table livre(
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	titre vchar(100),
-	auteur vchar(20),
-	editeur vchar(20),
+	auteur vchar(50),
+	editeur vchar(50),
 	isbn vchar(17),
 	valide INTEGER
 );
@@ -52,12 +53,12 @@ insert into status (type) values
 	('En cour d''emprunt');
 
 -- Création d''utilisateurs, les deux premier sont admin
-insert into utilisateur (prenom, nom, date_naissance, mail, rang, password) values
-	('Mickael', 'Spilmont', '1987-09-12', 'mickael.spilmont@webmail.com', 10, '0000'),
-	('Alexandre', 'Duhamel', '1991-12-09', 'alexandre.duhamel@webmail.com', 10, '0000'),
-	('Charle', 'Atant', '1970-03-09', 'charle.atant@webmail.com', 1, '0000'),
-	('Leila', 'Talica', '1950-10-28', 'leila.talica@webmail.com', 1, '0000'),
-	('Alice', 'Machin', '2001-07-18', 'alice.talica@webmail.com', 1, '0000');
+insert into utilisateur (pseudo, prenom, nom, date_naissance, mail, rang, password) values
+	('micspi', 'Mickael', 'Spilmont', '1987-09-12', 'mickael.spilmont@webmail.com', 10, '0000'),
+	('aleduh', 'Alexandre', 'Duhamel', '1991-12-09', 'alexandre.duhamel@webmail.com', 10, '0000'),
+	('chaata', 'Charle', 'Atant', '1970-03-09', 'charle.atant@webmail.com', 1, '0000'),
+	('leital', 'Leila', 'Talica', '1950-10-28', 'leila.talica@webmail.com', 1, '0000'),
+	('alimac', 'Alice', 'Machin', '2001-07-18', 'alice.talica@webmail.com', 1, '0000');
 
 -- Création de Livres
 insert into livre (titre, auteur, editeur, isbn, valide) values

@@ -8,7 +8,7 @@ SELECT * FROM utilisateur;
 SELECT * FROM livre;
 
 -- Afficher les 5 derniers exemplaires ajoutés
-SELECT e.id, e.date_exemplaire, l.titre, l.auteur, l.editeur, u.prenom, s.type
+SELECT e.id, e.date_exemplaire, l.titre, l.auteur, l.editeur, u.pseudo, s.type
 FROM exemplaire AS e
 INNER JOIN livre AS l ON e.id_livre = l.id
 INNER JOIN utilisateur AS u ON e.id_util = u.id
@@ -17,3 +17,7 @@ ORDER BY date_exemplaire DESC LIMIT 10;
 
 -- Affiche la table exemplaires
 -- SELECT * FROM exemplaire;
+
+-- login
+SELECT * FROM utilisateur
+WHERE pseudo = 'micspi' AND password = '0000';

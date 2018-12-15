@@ -5,7 +5,7 @@ public class Exemplaire {
     private String titre;
     private String auteur;
     private String editeur;
-    private String prenom;
+    private String pseudo;
     private String type;
 
     public int getId() {
@@ -48,12 +48,12 @@ public class Exemplaire {
         this.editeur = editeur;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getPseudo() {
+        return pseudo;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
 
     public String getType() {

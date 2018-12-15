@@ -30,7 +30,7 @@ public class Accueil extends HttpServlet {
         Statement stat = conn.createStatement();
 
         // le resultat du select est mis dans un ResultSet
-        String requette = "SELECT e.id, e.date_exemplaire, l.titre, l.auteur, l.editeur, u.prenom, s.type ";
+        String requette = "SELECT e.id, e.date_exemplaire, l.titre, l.auteur, l.editeur, u.pseudo, s.type ";
         requette += "FROM exemplaire AS e ";
         requette += "INNER JOIN livre AS l ON e.id_livre = l.id ";
         requette += "INNER JOIN utilisateur AS u ON e.id_util = u.id ";
@@ -46,9 +46,8 @@ public class Accueil extends HttpServlet {
           exemplaire.setTitre(rs.getString("titre"));
           exemplaire.setAuteur(rs.getString("auteur"));
           exemplaire.setEditeur(rs.getString("editeur"));
-          exemplaire.setPrenom(rs.getString("prenom"));
+          exemplaire.setPseudo(rs.getString("pseudo"));
           exemplaire.setType(rs.getString("type"));
-          out.print(exemplaire.getId());
           listeExemplaire.add(exemplaire);
         }
         req.setAttribute("exemplaire", listeExemplaire);
