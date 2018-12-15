@@ -30,22 +30,28 @@ public class Accueil extends HttpServlet {
         Statement stat = conn.createStatement();
 
         // le resultat du select est mis dans un ResultSet
-        String requette = "SELECT * FROM utilisateur;";
+        String requette = "SELECT e.id, e.date_exemplaire, l.titre, l.auteur, l.editeur, u.prenom, s.type ";
+        requette += "FROM exemplaire AS e ";
+        requette += "INNER JOIN livre AS l ON e.id_livre = l.id ";
+        requette += "INNER JOIN utilisateur AS u ON e.id_util = u.id ";
+        requette += "INNER JOIN status AS s ON e.id_status = s.id ";
+        requette += "ORDER BY date_exemplaire DESC LIMIT 20;";
         ResultSet rs = stat.executeQuery(requette);
 
-        ArrayList<Utilisateur> listeUtilisateur = new ArrayList<>();
+        ArrayList<Exemplaire> listeExemplaire = new ArrayList<>();
         while(rs.next()) {
-          Utilisateur utilisateur = new Utilisateur();
-          utilisateur.setId(rs.getInt("id"));
-          utilisateur.setPrenom(rs.getString("prenom"));
-          utilisateur.setNom(rs.getString("nom"));
-          utilisateur.setDateNaissance(rs.getString("date_naissance"));
-          utilisateur.setMail(rs.getString("mail"));
-          utilisateur.setRang(rs.getInt("rang"));
-          utilisateur.setPassword(rs.getString("password"));
-          listeUtilisateur.add(utilisateur);
+          Exemplaire exemplaire = new Exemplaire();
+          exemplaire.setId(rs.getInt("id"));
+          exemplaire.setDate(rs.getString("date_exemplaire"));
+          exemplaire.setTitre(rs.getString("titre"));
+          exemplaire.setAuteur(rs.getString("auteur"));
+          exemplaire.setEditeur(rs.getString("editeur"));
+          exemplaire.setPrenom(rs.getString("prenom"));
+          exemplaire.setType(rs.getString("type"));
+          out.print(exemplaire.getId());
+          listeExemplaire.add(exemplaire);
         }
-        req.setAttribute("utilisateur", listeUtilisateur);
+        req.setAttribute("exemplaire", listeExemplaire);
 
         // On ferme les connexions au ResultSet, Statement et à la base
         rs.close();
