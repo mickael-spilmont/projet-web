@@ -56,7 +56,7 @@ insert into utilisateur (prenom, nom, date_naissance, mail, rang, password) valu
 	('Mickael', 'Spilmont', '1987-09-12', 'mickael.spilmont@webmail.com', 10, '0000'),
 	('Alexandre', 'Duhamel', '1991-12-09', 'alexandre.duhamel@webmail.com', 10, '0000'),
 	('Charle', 'Atant', '1970-03-09', 'charle.atant@webmail.com', 1, '0000'),
-	('leila', 'talica', '1950-10-28', 'leila.talica@webmail.com', 1, '0000'),
+	('Leila', 'Talica', '1950-10-28', 'leila.talica@webmail.com', 1, '0000'),
 	('Alice', 'Machin', '2001-07-18', 'alice.talica@webmail.com', 1, '0000');
 
 -- Création de Livres
