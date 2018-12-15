@@ -30,14 +30,22 @@ public class Accueil extends HttpServlet {
         Statement stat = conn.createStatement();
 
         // le resultat du select est mis dans un ResultSet
-        String requette = "SELECT nom FROM utilisateur;";
+        String requette = "SELECT * FROM utilisateur;";
         ResultSet rs = stat.executeQuery(requette);
 
-        ArrayList<String> nom = new ArrayList<>();
+        ArrayList<Utilisateur> listeUtilisateur = new ArrayList<>();
         while(rs.next()) {
-          nom.add(rs.getString("nom"));
+          Utilisateur utilisateur = new Utilisateur();
+          utilisateur.setId(rs.getInt("id"));
+          utilisateur.setPrenom(rs.getString("prenom"));
+          utilisateur.setNom(rs.getString("nom"));
+          utilisateur.setDateNaissance(rs.getString("date_naissance"));
+          utilisateur.setMail(rs.getString("mail"));
+          utilisateur.setRang(rs.getInt("rang"));
+          utilisateur.setPassword(rs.getString("password"));
+          listeUtilisateur.add(utilisateur);
         }
-        req.setAttribute("nom", nom);
+        req.setAttribute("utilisateur", listeUtilisateur);
 
         // On ferme les connexions au ResultSet, Statement et à la base
         rs.close();
