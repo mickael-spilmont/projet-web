@@ -10,28 +10,23 @@
   <h1>Site en construction</h1>
   <c:import url="/menu-invite.jsp"></c:import>
 
-  <h2>Derniers ajouts</h2>
+  <h2>Mes livres</h2>
   <table>
       <tr>
-        <th>Date d'ajout</th>
         <th>Titre</th>
         <th>Auteur</th>
         <th>Editeur</th>
-        <th>Utilisateur</th>
+        <th>Date</th>
         <th>Type d'ajout</th>
       </tr>
 
-      <c:if test="${empty exemplaires}">
-        exemplaire est vide
-      </c:if>
-
       <c:forEach items="${exemplaires}" var="temp">
       <tr>
-        <td>${temp.date} </td>
+        <td>${temp.id} </td>
         <td>${temp.titre} </td>
         <td>${temp.auteur} </td>
         <td>${temp.editeur} </td>
-        <td>${temp.pseudo} </td>
+        <td>${temp.date} </td>
         <td>${temp.type} </td>
       </tr>
       </c:forEach>

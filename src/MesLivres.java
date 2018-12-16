@@ -13,15 +13,20 @@ public class MesLivres extends HttpServlet {
     resp.setCharacterEncoding("UTF-8");
     PrintWriter out = resp.getWriter();
 
-    // Appel de la session
+    // Appel de la session et récupération de l'utilisateur
     HttpSession session = req.getSession();
+    Utilisateur utilisateur = (Utilisateur)session.getAttribute("utilisateur");
 
     // On vérifie si un utilisateur est logué, dans le cas contraire on retourne la page de connexion
-    if (session.getAttribute(utilisateur) == null) {
+    if (utilisateur == null) {
       this.getServletContext().getRequestDispatcher("/connexion.jsp").forward(req, resp);
     }
 
-    // On vas chercher les livres de l'utilisateur dans la database
-    
+    // On vas chercher les livres de l'utilisateur dans la base et on les insères dans request
+    Base base = new Base();
+    req.setAttribute("exemplaires", base.getLivresUtilisateur(utilisateur.getId()));
+
+    // On appel accueil.jsp
+    this.getServletContext().getRequestDispatcher("/mes-livres.jsp").forward(req, resp);
   }
 }

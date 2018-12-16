@@ -6,7 +6,7 @@
   <c:when test="${!empty sessionScope.utilisateur  && sessionScope.utilisateur.rang==10}">
     <ul>
         <li><a href="accueil">Accueil </a></li>
-        <li><a href="toDo">Mes livres </a></li>
+        <li><a href="mes-livres">Mes livres </a></li>
         <li><a href="toDo">Ajouter des livres </a></li>
         <li><a href="toDo">Rechercher </a></li>
         <li><a href="toDo">Administration </a></li>
@@ -17,7 +17,7 @@
   <c:when test="${!empty sessionScope.utilisateur && sessionScope.utilisateur.rang==1}">
     <ul>
       <li><a href="accueil">Accueil </a></li>
-      <li><a href="toDo">Mes livres </a></li>
+      <li><a href="mes-livres">Mes livres </a></li>
       <li><a href="toDo">Ajouter des livres </a></li>
       <li><a href="toDo">Rechercher </a></li>
       <li><a href="toDo">${sessionScope.utilisateur.pseudo} </a></li>

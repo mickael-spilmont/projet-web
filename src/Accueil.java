@@ -13,7 +13,7 @@ public class Accueil extends HttpServlet {
     // On créer un objet Base
     Base base = new Base();
     // On transfert le resultat de la requette dans request
-    req.setAttribute("exemplaire", base.getDernierAjout(20));
+    req.setAttribute("exemplaires", base.getDernierAjout(20));
 
     // On appel accueil.jsp
     this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(req, resp);

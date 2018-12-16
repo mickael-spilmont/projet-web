@@ -6,8 +6,7 @@ import javax.servlet.annotation.*;
 import java.sql.*;
 import java.time.*;
 
-// import Exemplaire;
-
+// Classe qui gère tout les accès à la base de données
 public class Base {
   private Connection connection;
 
@@ -16,7 +15,7 @@ public class Base {
     List<Exemplaire> exemplaires = new ArrayList<>();
 
     // La requette est stockée dans une String
-    String requette = "SELECT e.id, e.date_exemplaire, l.titre, l.auteur, l.editeur, u.pseudo, s.type ";
+    String requette = "SELECT e.id, l.id, u.id, e.date_exemplaire, l.titre, l.auteur, l.editeur, u.pseudo, s.type ";
     requette += "FROM exemplaire AS e ";
     requette += "INNER JOIN livre AS l ON e.id_livre = l.id ";
     requette += "INNER JOIN utilisateur AS u ON e.id_util = u.id ";
@@ -32,6 +31,8 @@ public class Base {
       while(resultset.next()) {
         Exemplaire exemplaire = new Exemplaire();
         exemplaire.setId(resultset.getInt("id"));
+        exemplaire.setIdLivre(resultset.getInt(2));
+        exemplaire.setIdUtilisateur(resultset.getInt(3));
         exemplaire.setDate(resultset.getString("date_exemplaire"));
         exemplaire.setTitre(resultset.getString("titre"));
         exemplaire.setAuteur(resultset.getString("auteur"));
@@ -54,6 +55,7 @@ public class Base {
     return exemplaires;
   }
 
+  // Requette qui affiche un utilisateur en fonction de pseudo et de son login (sert pour Connexion.java)
   public Utilisateur getConnexion(String pseudo, String password) {
     Utilisateur utilisateur = new Utilisateur();
 
@@ -87,6 +89,49 @@ public class Base {
         ex.printStackTrace();
     }
     return utilisateur;
+  }
+
+  // Liste tout les livres possédé par un utilisateur
+  public List<Exemplaire> getLivresUtilisateur(int id) {
+    List<Exemplaire> exemplaires = new ArrayList<>();
+
+    // La requette est stockée dans une String
+    String requette = "SELECT e.id, l.titre, l.auteur, l.editeur, e.date_exemplaire, s.type ";
+    requette += "FROM exemplaire AS e ";
+    requette += "INNER JOIN livre AS l ON e.id_livre = l.id ";
+    requette += "INNER JOIN utilisateur AS u ON e.id_util = u.id ";
+    requette += "INNER JOIN status AS s ON e.id_status = s.id ";
+    requette += "WHERE u.id = 3 ";
+    requette += "ORDER BY titre ASC;";
+
+    loadDataBase();
+
+    try {
+      Statement statement = connection.createStatement();
+      ResultSet resultset = statement.executeQuery(requette);
+
+      while(resultset.next()) {
+        Exemplaire exemplaire = new Exemplaire();
+        exemplaire.setId(resultset.getInt("id"));
+        exemplaire.setTitre(resultset.getString("titre"));
+        exemplaire.setAuteur(resultset.getString("auteur"));
+        exemplaire.setEditeur(resultset.getString("editeur"));
+        exemplaire.setDate(resultset.getString("date_exemplaire"));
+        exemplaire.setType(resultset.getString("type"));
+        exemplaires.add(exemplaire);
+      }
+
+      // Fermeture de resultset, statement, connexion
+      resultset.close();
+      statement.close();
+      connection.close();
+      }
+      catch (SQLException ex){
+        ex.printStackTrace();
+      }
+
+    // On retourne le resultat
+    return exemplaires;
   }
 
   // Méthode qui permet de se connecter à la base
