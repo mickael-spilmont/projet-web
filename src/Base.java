@@ -41,11 +41,10 @@ public class Base {
         exemplaires.add(exemplaire);
       }
 
-
       // Fermeture de resultset, statement, connexion
-        resultset.close();
-        statement.close();
-        connection.close();
+      resultset.close();
+      statement.close();
+      connection.close();
       }
       catch (SQLException ex){
         ex.printStackTrace();
@@ -53,6 +52,41 @@ public class Base {
 
     // On retourne le resultat
     return exemplaires;
+  }
+
+  public Utilisateur getConnexion(String pseudo, String password) {
+    Utilisateur utilisateur = new Utilisateur();
+
+    String requette = "SELECT * FROM utilisateur ";
+    requette += "WHERE pseudo = '" + pseudo + "' AND password = '" + password + "';";
+
+    loadDataBase();
+
+    try {
+      Statement statement = connection.createStatement();
+      ResultSet resultset = statement.executeQuery(requette);
+
+      if (!resultset.next()) {
+        utilisateur = null;
+      }
+      else {
+        utilisateur.setId(resultset.getInt("id"));
+        utilisateur.setPseudo(resultset.getString("pseudo"));
+        utilisateur.setPrenom(resultset.getString("prenom"));
+        utilisateur.setNom(resultset.getString("nom"));
+        utilisateur.setDateNaissance(resultset.getString("date_naissance"));
+        utilisateur.setMail(resultset.getString("mail"));
+        utilisateur.setRang(resultset.getInt("rang"));
+      }
+
+      resultset.close();
+      statement.close();
+      connection.close();
+    }
+    catch (SQLException ex){
+        ex.printStackTrace();
+    }
+    return utilisateur;
   }
 
   // Méthode qui permet de se connecter à la base
