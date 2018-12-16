@@ -11,10 +11,6 @@
   <h1>Site en construction</h1>
   <c:import url="/menu-invite.jsp"></c:import>
 
-  <c:if test="${ !empty sessionScope.utilisateur }">
-    Vous ête utilisateur ${ sessionScope.utilisateur.pseudo } </br>
-  </c:if>
-
   <c:forEach items="${exemplaire}" var="temp">
         ${temp.date}, ${temp.titre}, ${temp.auteur}, ${temp.editeur}, ${temp.pseudo}, ${temp.type} <br />
   </c:forEach>

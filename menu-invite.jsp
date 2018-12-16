@@ -2,10 +2,35 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%-- <%@ page import="java.util.ArrayList" %> --%>
 
-<ul>
-    <li><a href="toDo">Accueil </a></li>
-    <li><a href="toDo">Mes livres </a></li>
-    <li><a href="toDo">Ajouter des livres </a></li>
-    <li><a href="toDo">Rechercher </a></li>
-    <li><a href="connexion.jsp">Connexion </a></li>
-</ul>
+<c:choose>
+  <c:when test="${!empty sessionScope.utilisateur  && sessionScope.utilisateur.rang==10}">
+    <ul>
+        <li><a href="accueil">Accueil </a></li>
+        <li><a href="toDo">Mes livres </a></li>
+        <li><a href="toDo">Ajouter des livres </a></li>
+        <li><a href="toDo">Rechercher </a></li>
+        <li><a href="toDo">Administration </a></li>
+        <li><a href="toDo">${sessionScope.utilisateur.pseudo} </a></li>
+        <li><a href="deconnexion">Deconnexion </a></li>
+    </ul>
+  </c:when>
+  <c:when test="${!empty sessionScope.utilisateur && sessionScope.utilisateur.rang==1}">
+    <ul>
+      <li><a href="accueil">Accueil </a></li>
+      <li><a href="toDo">Mes livres </a></li>
+      <li><a href="toDo">Ajouter des livres </a></li>
+      <li><a href="toDo">Rechercher </a></li>
+      <li><a href="toDo">${sessionScope.utilisateur.pseudo} </a></li>
+      <li><a href="deconnexion">Deconnexion </a></li>
+    </ul>
+  </c:when>
+  <c:otherwise>
+    <ul>
+      <li><a href="accueil">Accueil </a></li>
+      <li><a href="connexion.jsp">Mes livres </a></li>
+      <li><a href="connexion.jsp">Ajouter des livres </a></li>
+      <li><a href="toDo">Rechercher </a></li>
+      <li><a href="connexion.jsp">Connexion </a></li>
+    </ul>
+  </c:otherwise>
+</c:choose>

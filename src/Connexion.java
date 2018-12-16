@@ -19,6 +19,8 @@ public class Connexion extends HttpServlet {
     String pseudo = req.getParameter("pseudo");
     String password = req.getParameter("password");
 
+    // Consultation de la base de donnée afin de vérifier que l'utilisateur et le mot
+    // passe correspondent
     try {
       Class.forName("org.sqlite.JDBC");
       String dbURL =  "jdbc:sqlite:../../BDD/base.db";
@@ -34,6 +36,7 @@ public class Connexion extends HttpServlet {
 
         if (!rs.next()) {
           req.setAttribute("tentative", true);
+          this.getServletContext().getRequestDispatcher("/connexion.jsp").forward(req, resp);
         }
         else {
           Utilisateur utilisateur = new Utilisateur();

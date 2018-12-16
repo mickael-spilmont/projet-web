@@ -11,6 +11,10 @@
   <h1>Site en construction</h1>
   <c:import url="/menu-invite.jsp"></c:import>
 
+  <c:if test="${tentative}">
+    <p>Pseudo ou mot de passe invalide !</p>
+  </c:if>
+
   <form method="post" action="connexion">
     <p>
       <label for="pseudo">Pseudo : </label>
