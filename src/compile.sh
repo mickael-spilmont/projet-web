@@ -5,6 +5,9 @@ javac -d ../WEB-INF/classes/ Accueil.java
 javac -d ../WEB-INF/classes/ Connexion.java
 javac -d ../WEB-INF/classes/ Deconnexion.java
 
+# Java Base
+javac -d ../WEB-INF/classes/ Base.java
+
 # Java Beans
 javac -d ../WEB-INF/classes/ Utilisateur.java
 javac -d ../WEB-INF/classes/ Exemplaire.java
