@@ -134,6 +134,28 @@ public class Base {
     return exemplaires;
   }
 
+  // Méthode d'ajout d'un livres
+  public void ajouterLivre(String titre, String auteur, String editeur, String isbn) {
+    // La requette est stockée dans une String
+    String requette = "INSERT INTO livre (titre, auteur, editeur, isbn) VALUES ";
+    requette += "('" + titre + "', '" + auteur + "', '" + editeur + "', '" + isbn + "');";
+
+    loadDataBase();
+
+    try {
+      Statement statement = connection.createStatement();
+      ResultSet resultset = statement.executeQuery(requette);
+
+      // Fermeture de resultset, statement, connexion
+      resultset.close();
+      statement.close();
+      connection.close();
+      }
+      catch (SQLException ex){
+        ex.printStackTrace();
+      }
+  }
+
   // Méthode qui permet de se connecter à la base
   private void loadDataBase() {
     try {

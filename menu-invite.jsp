@@ -7,7 +7,7 @@
     <ul>
         <li><a href="accueil">Accueil </a></li>
         <li><a href="mes-livres">Mes livres </a></li>
-        <li><a href="toDo">Ajouter des livres </a></li>
+        <li><a href="ajouter-livre.jsp">Ajouter des livres </a></li>
         <li><a href="toDo">Rechercher </a></li>
         <li><a href="toDo">Administration </a></li>
         <li><a href="toDo">${sessionScope.utilisateur.pseudo} </a></li>
@@ -18,7 +18,7 @@
     <ul>
       <li><a href="accueil">Accueil </a></li>
       <li><a href="mes-livres">Mes livres </a></li>
-      <li><a href="toDo">Ajouter des livres </a></li>
+      <li><a href="ajouter-livre.jsp">Ajouter des livres </a></li>
       <li><a href="toDo">Rechercher </a></li>
       <li><a href="toDo">${sessionScope.utilisateur.pseudo} </a></li>
       <li><a href="deconnexion">Deconnexion </a></li>

@@ -30,3 +30,7 @@ INNER JOIN utilisateur AS u ON e.id_util = u.id
 INNER JOIN status AS s ON e.id_status = s.id
 WHERE u.id = 3
 ORDER BY titre ASC;
+
+-- Ajouter un livre
+INSERT INTO livre (titre, auteur, editeur, isbn) VALUES
+('Blade Runner', 'P.K.Dick', 'J''ai Lu', '2277217689');

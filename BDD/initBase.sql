@@ -21,7 +21,7 @@ create table livre(
 	auteur vchar(50),
 	editeur vchar(50),
 	isbn vchar(17),
-	valide INTEGER
+	valide INTEGER DEFAULT 0
 );
 
 create table exemplaire(
@@ -61,12 +61,12 @@ insert into utilisateur (pseudo, prenom, nom, date_naissance, mail, rang, passwo
 	('alimac', 'Alice', 'Machin', '2001-07-18', 'alice.talica@webmail.com', 1, '0000');
 
 -- Création de Livres
-insert into livre (titre, auteur, editeur, isbn, valide) values
-	('Harry Potter à l''Ecole des Sorciers', 'J.K.Rowling', 'Gallimard', '2070643026', 1),
-	('Zothique', 'Clark Ashton Smith', 'Mnémos', '2354085885', 1),
-	('Averoigne', 'Clark Ashton Smith', 'Mnémos', '2354086105', 1),
-	('Les Contrées du réve', 'Howard Phillips Lovecraft', 'Bragelone', '9791028110994', 1),
-	('La Quête Onirique de Kadath l''Inconnue', 'Howard Phillips Lovecraft', 'Bragelone', 'B073SDW4VV', 1);
+insert into livre (titre, auteur, editeur, isbn) values
+	('Harry Potter à l''Ecole des Sorciers', 'J.K.Rowling', 'Gallimard', '2070643026'),
+	('Zothique', 'Clark Ashton Smith', 'Mnémos', '2354085885'),
+	('Averoigne', 'Clark Ashton Smith', 'Mnémos', '2354086105'),
+	('Les Contrées du réve', 'Howard Phillips Lovecraft', 'Bragelone', '9791028110994'),
+	('La Quête Onirique de Kadath l''Inconnue', 'Howard Phillips Lovecraft', 'Bragelone', 'B073SDW4VV');
 
 -- Création d'exemplaire
 insert into exemplaire (id_util, id_livre, id_status) values

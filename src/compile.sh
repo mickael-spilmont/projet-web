@@ -5,6 +5,7 @@ javac -d ../WEB-INF/classes/ Accueil.java
 javac -d ../WEB-INF/classes/ Connexion.java
 javac -d ../WEB-INF/classes/ Deconnexion.java
 javac -d ../WEB-INF/classes/ MesLivres.java
+javac -d ../WEB-INF/classes/ AjouterLivre.java
 
 # Java Base
 javac -d ../WEB-INF/classes/ Base.java
