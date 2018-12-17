@@ -30,6 +30,7 @@
       <li><a href="connexion.jsp">Mes livres </a></li>
       <li><a href="connexion.jsp">Ajouter des livres </a></li>
       <li><a href="toDo">Rechercher </a></li>
+      <li><a href="inscription.jsp">Inscription </a></li>
       <li><a href="connexion.jsp">Connexion </a></li>
     </ul>
   </c:otherwise>

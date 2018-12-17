@@ -11,7 +11,7 @@ create table utilisateur(
 	nom vchar(50),
 	date_naissance DATETIME,
 	mail vchar(50),
-	rang INTEGER,
+	rang INTEGER DEFAULT 1,
 	password vchar(20)
 );
 

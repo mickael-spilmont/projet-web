@@ -46,10 +46,10 @@ public class Base {
       resultset.close();
       statement.close();
       connection.close();
-      }
-      catch (SQLException ex){
-        ex.printStackTrace();
-      }
+    }
+    catch (SQLException ex){
+      ex.printStackTrace();
+    }
 
     // On retourne le resultat
     return exemplaires;
@@ -86,7 +86,7 @@ public class Base {
       connection.close();
     }
     catch (SQLException ex){
-        ex.printStackTrace();
+      ex.printStackTrace();
     }
     return utilisateur;
   }
@@ -101,7 +101,7 @@ public class Base {
     requette += "INNER JOIN livre AS l ON e.id_livre = l.id ";
     requette += "INNER JOIN utilisateur AS u ON e.id_util = u.id ";
     requette += "INNER JOIN status AS s ON e.id_status = s.id ";
-    requette += "WHERE u.id = 3 ";
+    requette += "WHERE u.id = " + id + " ";
     requette += "ORDER BY titre ASC;";
 
     loadDataBase();
@@ -125,13 +125,48 @@ public class Base {
       resultset.close();
       statement.close();
       connection.close();
-      }
-      catch (SQLException ex){
-        ex.printStackTrace();
-      }
+    }
+    catch (SQLException ex){
+      ex.printStackTrace();
+    }
 
     // On retourne le resultat
     return exemplaires;
+  }
+
+  // Méthode qui retourne un utilisateur en fonction de son login et de son Mail
+  public Utilisateur getUtilisateur(String pseudo, String mail) {
+    Utilisateur utilisateur = new Utilisateur();
+
+    // La requette est stockée dans une String
+    String requette = "SELECT pseudo, mail FROM utilisateur ";
+    requette += "WHERE pseudo = '" + pseudo + "' OR mail = '" + mail + "';";
+
+    loadDataBase();
+
+    try {
+      Statement statement = connection.createStatement();
+      ResultSet resultset = statement.executeQuery(requette);
+
+      if (!resultset.next()) {
+        utilisateur = null;
+      }
+      else {
+        utilisateur.setPseudo(resultset.getString("pseudo"));
+        utilisateur.setMail(resultset.getString("mail"));
+      }
+
+      // Fermeture de resultset, statement, connexion
+      resultset.close();
+      statement.close();
+      connection.close();
+    }
+    catch (SQLException ex){
+      ex.printStackTrace();
+    }
+
+    // On retourne le resultat
+    return utilisateur;
   }
 
   // Méthode d'ajout d'un livres
@@ -150,10 +185,32 @@ public class Base {
       resultset.close();
       statement.close();
       connection.close();
-      }
-      catch (SQLException ex){
-        ex.printStackTrace();
-      }
+    }
+    catch (SQLException ex){
+      ex.printStackTrace();
+    }
+  }
+
+  // Méthode d'ajout d'un utilisateur
+  public void ajouterUtilisateur(String pseudo, String prenom, String nom, String date, String mail, String password) {
+    // La requette est stockée dans une String
+    String requette = "INSERT INTO utilisateur (pseudo, prenom, nom, date_naissance, mail, password) VALUES ";
+    requette += "('" + pseudo + "', '" + prenom + "', '" + nom + "', '" + date + "', '" + mail + "', '" + password + "');";
+
+    loadDataBase();
+
+    try {
+      Statement statement = connection.createStatement();
+      ResultSet resultset = statement.executeQuery(requette);
+
+      // Fermeture de resultset, statement, connexion
+      resultset.close();
+      statement.close();
+      connection.close();
+    }
+    catch (SQLException ex){
+      ex.printStackTrace();
+    }
   }
 
   // Méthode qui permet de se connecter à la base

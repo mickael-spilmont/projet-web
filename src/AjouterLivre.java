@@ -9,7 +9,7 @@ import java.sql.*;
 public class AjouterLivre extends HttpServlet {
 
 
-  public void service(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
+  public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     // On créer un objet Base
     Base base = new Base();
 
@@ -17,10 +17,10 @@ public class AjouterLivre extends HttpServlet {
     StringValidation sv = new StringValidation();
 
     // On récupère les données du formulaire
-    String titre = sv.valider(req.getParameter("titre"), 100);
-    String auteur = sv.valider(req.getParameter("auteur"), 50);
-    String editeur = sv.valider(req.getParameter("editeur"), 50);
-    String isbn = sv.valider(req.getParameter("isbn"), 17);
+    String titre = sv.valider(req.getParameter("titre"), 1, 100);
+    String auteur = sv.valider(req.getParameter("auteur"), 1, 50);
+    String editeur = sv.valider(req.getParameter("editeur"), 1, 50);
+    String isbn = sv.valider(req.getParameter("isbn"), 0, 17);
 
     // Vérification des champs, si un champ est invalide on renvoi le formulaire
     if (titre == null || auteur == null || editeur == null || isbn == null) {
