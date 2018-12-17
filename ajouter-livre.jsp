@@ -10,26 +10,26 @@
   <h1>Site en construction</h1>
   <c:import url="/menu-invite.jsp"></c:import>
 
-  <%-- <c:if test="${tentative}">
-    <p>Pseudo ou mot de passe invalide !</p>
-  </c:if> --%>
+  <c:if test="${tentative}">
+    <p>Un ou plusieurs champs sont incorrects</p>
+  </c:if>
 
   <form method="post" action="ajouter-livre">
     <p>
       <label for="titre">Titre : </label>
-      <input type="text" name="titre" id="titre" />
+      <input type="text" name="titre" <c:if test="${!empty titre}">value=${titre}</c:if> id="titre" />
     </p>
     <p>
       <label for="auteur">Auteur : </label>
-      <input type="text" name="auteur" id="auteur" />
+      <input type="text" name="auteur" <c:if test="${!empty auteur}">value=${auteur}</c:if> id="auteur" />
     </p>
     <p>
       <label for="editeur">Editeur : </label>
-      <input type="text" name="editeur" id="editeur" />
+      <input type="text" name="editeur" <c:if test="${!empty editeur}">value=${editeur}</c:if> id="editeur" />
     </p>
     <p>
       <label for="isbn">ISBN : </label>
-      <input type="text" name="isbn" id="isbn" />
+      <input type="text" name="isbn" <c:if test="${!empty isbn}">value=${isbn}</c:if> id="isbn" />
     </p>
 
       <input type="submit" />

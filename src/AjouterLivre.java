@@ -13,11 +13,24 @@ public class AjouterLivre extends HttpServlet {
     // On créer un objet Base
     Base base = new Base();
 
+    // On créer un objet de validation
+    StringValidation sv = new StringValidation();
+
     // On récupère les données du formulaire
-    String titre = req.getParameter("titre");
-    String auteur = req.getParameter("auteur");
-    String editeur = req.getParameter("editeur");
-    String isbn = req.getParameter("isbn");
+    String titre = sv.valider(req.getParameter("titre"), 100);
+    String auteur = sv.valider(req.getParameter("auteur"), 50);
+    String editeur = sv.valider(req.getParameter("editeur"), 50);
+    String isbn = sv.valider(req.getParameter("isbn"), 17);
+
+    // Vérification des champs, si un champ est invalide on renvoi le formulaire
+    if (titre == null || auteur == null || editeur == null || isbn == null) {
+      req.setAttribute("tentative", true);
+      req.setAttribute("titre", titre);
+      req.setAttribute("auteur", auteur);
+      req.setAttribute("editeur", editeur);
+      req.setAttribute("isbn", isbn);
+      this.getServletContext().getRequestDispatcher("/ajouter-livre.jsp").forward(req, resp);
+    }
 
     // On execute la requette
     base.ajouterLivre(titre, auteur, editeur, isbn);
