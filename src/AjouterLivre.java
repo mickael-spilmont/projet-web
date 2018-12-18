@@ -31,14 +31,12 @@ public class AjouterLivre extends HttpServlet {
       req.setAttribute("isbn", isbn);
       this.getServletContext().getRequestDispatcher("/ajouter-livre.jsp").forward(req, resp);
     }
+    else {
+      // On execute la requette
+      base.ajouterLivre(titre, auteur, editeur, isbn);
 
-    // On execute la requette
-    base.ajouterLivre(titre, auteur, editeur, isbn);
-
-    // On transfert le resultat de la requette dans request
-    // req.setAttribute("exemplaires", base.getDernierAjout(20));
-
-    // On appel accueil.jsp
-    this.getServletContext().getRequestDispatcher("/accueil").forward(req, resp);
+      // On appel accueil.jsp
+      this.getServletContext().getRequestDispatcher("/accueil").forward(req, resp);
+    }
   }
 }

@@ -1,2 +1,2 @@
-cd ../WEB-INF/classes/ && ~/Code/Prog\ Web/tomcat8/bin/shutdown.sh &&
-  ~/Code/Prog\ Web/tomcat8/bin/startup.sh
+cd ../WEB-INF/classes/ && ../../../bin/shutdown.sh &&
+  ../../../bin/startup.sh
