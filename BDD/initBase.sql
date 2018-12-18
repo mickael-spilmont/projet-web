@@ -54,6 +54,7 @@ insert into status (type) values
 
 -- Création d''utilisateurs, les deux premier sont admin
 insert into utilisateur (pseudo, prenom, nom, date_naissance, mail, rang, password) values
+	('luilan', 'Luigi', 'Lancieri', '1980-01-01', 'luigi.lancieri@webmail.com', 10, '0000'),
 	('micspi', 'Mickael', 'Spilmont', '1987-09-12', 'mickael.spilmont@webmail.com', 10, '0000'),
 	('aleduh', 'Alexandre', 'Duhamel', '1991-12-09', 'alexandre.duhamel@webmail.com', 10, '0000'),
 	('chaata', 'Charle', 'Atant', '1970-03-09', 'charle.atant@webmail.com', 1, '0000'),

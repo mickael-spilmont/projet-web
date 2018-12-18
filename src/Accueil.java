@@ -8,7 +8,6 @@ import java.sql.*;
 @WebServlet("/accueil")
 public class Accueil extends HttpServlet {
 
-
   public void service(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException {
     // On créer un objet Base
     Base base = new Base();

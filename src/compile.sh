@@ -7,6 +7,7 @@ javac -d ../WEB-INF/classes/ Deconnexion.java
 javac -d ../WEB-INF/classes/ MesLivres.java
 javac -d ../WEB-INF/classes/ AjouterLivre.java
 javac -d ../WEB-INF/classes/ Inscription.java
+javac -d ../WEB-INF/classes/ Profil.java
 
 # Classes utilitaires
 javac -d ../WEB-INF/classes/ StringValidation.java

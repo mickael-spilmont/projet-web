@@ -4,8 +4,18 @@
 INSERT INTO utilisateur (pseudo, prenom, nom, date_naissance, mail, password) VALUES
 ('matru', 'Machin', 'Truc', '1987-12-12', 'machin@webmail.com', '00000000');
 
+-- Update password
+UPDATE utilisateur
+SET password = 1111
+WHERE id = 1;
+
 -- Afficher les utilisateurs
 SELECT * FROM utilisateur;
+
+-- Update password
+UPDATE utilisateur
+SET password = 1111
+WHERE id = 1;
 
 -- -- Afficher tout les Livres
 -- SELECT * FROM livre;

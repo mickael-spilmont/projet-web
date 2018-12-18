@@ -213,6 +213,28 @@ public class Base {
     }
   }
 
+  // Méthode de changement de password
+  public void setPassword(int id, String password) {
+    // La requette est stockée dans une String
+    String requette = "UPDATE utilisateur ";
+    requette += "SET password = '" + password + "' ";
+    requette += "WHERE id = " + id + ";";
+
+    loadDataBase();
+
+    try {
+      Statement statement = connection.createStatement();
+      statement.executeQuery(requette);
+
+      // Fermeture de resultset, statement, connexion
+      statement.close();
+      connection.close();
+    }
+    catch (SQLException ex){
+      ex.printStackTrace();
+    }
+  }
+
   // Méthode qui permet de se connecter à la base
   private void loadDataBase() {
     try {
