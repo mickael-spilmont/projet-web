@@ -4,11 +4,10 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>accueil</title>
+  <title>mes livres</title>
 </head>
 <body>
-  <h1>Site en construction</h1>
-  <c:import url="/menu-invite.jsp"></c:import>
+  <c:import url="/menu.jsp"></c:import>
 
   <h2>Mes livres</h2>
   <table>

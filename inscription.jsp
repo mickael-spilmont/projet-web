@@ -4,11 +4,10 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>accueil</title>
+  <title>inscription</title>
 </head>
 <body>
-  <h1>Site en construction</h1>
-  <c:import url="/menu-invite.jsp"></c:import>
+  <c:import url="/menu.jsp"></c:import>
 
   <c:if test="${tentative}">
     <p>Un ou plusieurs champs sont incorrects</p>

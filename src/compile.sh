@@ -8,6 +8,8 @@ javac -d ../WEB-INF/classes/ MesLivres.java
 javac -d ../WEB-INF/classes/ AjouterLivre.java
 javac -d ../WEB-INF/classes/ Inscription.java
 javac -d ../WEB-INF/classes/ Profil.java
+# javac -d ../WEB-INF/classes/ Administration.java
+javac -d ../WEB-INF/classes/ Rechercher.java
 
 # Classes utilitaires
 javac -d ../WEB-INF/classes/ StringValidation.java

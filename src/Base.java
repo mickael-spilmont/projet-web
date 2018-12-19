@@ -91,6 +91,40 @@ public class Base {
     return utilisateur;
   }
 
+  // Requette qui affiche un utilisateur en fonction de pseudo et de son login (sert pour Connexion.java)
+  public List<Utilisateur> getListeUtilisateur() {
+    List<Utilisateur> utilisateurs = new ArrayList<>();
+
+    String requette = "SELECT * FROM utilisateur;";
+
+    loadDataBase();
+
+    try {
+      Statement statement = connection.createStatement();
+      ResultSet resultset = statement.executeQuery(requette);
+
+      while (resultset.next()) {
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setId(resultset.getInt("id"));
+        utilisateur.setPseudo(resultset.getString("pseudo"));
+        utilisateur.setPrenom(resultset.getString("prenom"));
+        utilisateur.setNom(resultset.getString("nom"));
+        utilisateur.setDateNaissance(resultset.getString("date_naissance"));
+        utilisateur.setMail(resultset.getString("mail"));
+        utilisateur.setRang(resultset.getInt("rang"));
+        utilisateurs.add(utilisateur);
+      }
+
+      resultset.close();
+      statement.close();
+      connection.close();
+    }
+    catch (SQLException ex){
+      ex.printStackTrace();
+    }
+    return utilisateurs;
+  }
+
   // Liste tout les livres possédé par un utilisateur
   public List<Exemplaire> getLivresUtilisateur(int id) {
     List<Exemplaire> exemplaires = new ArrayList<>();
@@ -169,6 +203,43 @@ public class Base {
     return utilisateur;
   }
 
+  // Permet la recherche d'un livre
+  public List<Livre> recherche(String critere) {
+    List<Livre> livres = new ArrayList<>();
+
+    // La requette est stockée dans une String
+    String requette = "SELECT * FROM livre ";
+    requette += "WHERE titre LIKE '%" + critere + "%' OR auteur LIKE '%" + critere + "%' OR editeur LIKE '%" + critere + "%' OR isbn LIKE '%" + critere + "%';";
+
+    loadDataBase();
+
+    try {
+      Statement statement = connection.createStatement();
+      ResultSet resultset = statement.executeQuery(requette);
+
+      while(resultset.next()) {
+        Livre livre = new Livre();
+        livre.setId(resultset.getInt("id"));
+        livre.setTitre(resultset.getString("titre"));
+        livre.setAuteur(resultset.getString("auteur"));
+        livre.setEditeur(resultset.getString("editeur"));
+        livre.setIsbn(resultset.getString("isbn"));
+        livres.add(livre);
+      }
+
+      // Fermeture de resultset, statement, connexion
+      resultset.close();
+      statement.close();
+      connection.close();
+    }
+    catch (SQLException ex){
+      ex.printStackTrace();
+    }
+
+    // On retourne le resultat
+    return livres;
+  }
+
   // Méthode d'ajout d'un livres
   public void ajouterLivre(String titre, String auteur, String editeur, String isbn) {
     // La requette est stockée dans une String
@@ -179,10 +250,9 @@ public class Base {
 
     try {
       Statement statement = connection.createStatement();
-      ResultSet resultset = statement.executeQuery(requette);
+      statement.executeQuery(requette);
 
       // Fermeture de resultset, statement, connexion
-      resultset.close();
       statement.close();
       connection.close();
     }
@@ -201,10 +271,9 @@ public class Base {
 
     try {
       Statement statement = connection.createStatement();
-      ResultSet resultset = statement.executeQuery(requette);
+      statement.executeQuery(requette);
 
       // Fermeture de resultset, statement, connexion
-      resultset.close();
       statement.close();
       connection.close();
     }

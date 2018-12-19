@@ -4,34 +4,38 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>accueil</title>
+  <title>ajouter livre</title>
 </head>
 <body>
   <c:import url="/menu.jsp"></c:import>
 
-  <h2>Derniers ajouts</h2>
+  <c:if test="${tentative}">
+    <p>Un ou plusieurs champs sont incorrects</p>
+  </c:if>
+
+  <form method="post" action="recherche">
+    <p>
+      <label for="critere">Recherche : </label>
+      <input type="text" name="critere" id="critere" />
+    </p>
+
+      <input type="submit" />
+  </form>
+
   <table>
       <tr>
-        <th>Date d'ajout</th>
         <th>Titre</th>
         <th>Auteur</th>
         <th>Editeur</th>
-        <th>Utilisateur</th>
-        <th>Type d'ajout</th>
+        <th>Isbn</th>
       </tr>
 
-      <c:if test="${empty exemplaires}">
-        exemplaire est vide
-      </c:if>
-
-      <c:forEach items="${exemplaires}" var="temp">
+      <c:forEach items="${livres}" var="temp">
       <tr>
-        <td>${temp.date} </td>
         <td>${temp.titre} </td>
         <td>${temp.auteur} </td>
         <td>${temp.editeur} </td>
-        <td>${temp.pseudo} </td>
-        <td>${temp.type} </td>
+        <td>${temp.isbn} </td>
       </tr>
       </c:forEach>
 

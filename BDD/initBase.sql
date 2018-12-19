@@ -1,3 +1,5 @@
+PRAGMA encoding="UTF-8";
+
 drop table if exists utilisateur;
 drop table if exists livre;
 drop table if exists exemplaire;
@@ -63,7 +65,7 @@ insert into utilisateur (pseudo, prenom, nom, date_naissance, mail, rang, passwo
 
 -- Création de Livres
 insert into livre (titre, auteur, editeur, isbn) values
-	('Harry Potter à l''Ecole des Sorciers', 'J.K.Rowling', 'Gallimard', '2070643026'),
+	('Harry Potter a l''Ecole des Sorciers', 'J.K.Rowling', 'Gallimard', '2070643026'),
 	('Zothique', 'Clark Ashton Smith', 'Mnémos', '2354085885'),
 	('Averoigne', 'Clark Ashton Smith', 'Mnémos', '2354086105'),
 	('Les Contrées du réve', 'Howard Phillips Lovecraft', 'Bragelone', '9791028110994'),
